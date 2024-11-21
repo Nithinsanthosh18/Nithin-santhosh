@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+bool is_substring(char str[], char sub[]) {
+    int i, j;
+    
+    // Loop through each character of the main string
+    for (i = 0; str[i] != '\0'; i++) {
+        // Try to match the substring starting at position i
+        for (j = 0; sub[j] != '\0'; j++) {
+            // If characters do not match, break the inner loop
+            if (str[i + j] != sub[j]) {
+                break;
+            }
+        }
+        
+        // If we've matched the entire substring, return true
+        if (sub[j] == '\0') {
+            return true;
+        }
+    }
+    
+    // If the substring was not found, return false
+    return false;
+}
+
+int main() {
+    char str[100], sub[50];
+    
+    // Input the main string
+    printf("Enter the main string: ");
+    fgets(str, sizeof(str), stdin);
+    
+    // Remove the newline character from the main string
+    str[strcspn(str, "\n")] = '\0';
+    
+    // Input the substring to check for
+    printf("Enter the substring: ");
+    fgets(sub, sizeof(sub), stdin);
+    
+    // Remove the newline character from the substring
+    sub[strcspn(sub, "\n")] = '\0';
+    
+    // Check if the substring exists in the main string
+    if (is_substring(str, sub)) {
+        printf("The substring exists in the main string.\n");
+    } else {
+        printf("The substring does not exist in the main string.\n");
+    }
+
+    return 0;
+}

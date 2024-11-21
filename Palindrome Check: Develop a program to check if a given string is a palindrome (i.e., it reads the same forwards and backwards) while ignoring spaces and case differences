@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+void convert_case(char str[]) {
+    int i = 0;
+    
+    // Loop through each character of the string
+    while (str[i] != '\0') {
+        // If the character is lowercase, convert it to uppercase
+        if (str[i] >= 'a' && str[i] <= 'z') {
+            str[i] = str[i] - 'a' + 'A';
+        }
+        // If the character is uppercase, convert it to lowercase
+        else if (str[i] >= 'A' && str[i] <= 'Z') {
+            str[i] = str[i] - 'A' + 'a';
+        }
+        i++;
+    }
+}
+
+int main() {
+    char str[100];
+    
+    // Input the string
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+    
+    // Remove the newline character that fgets() may add
+    str[strcspn(str, "\n")] = '\0';
+    
+    // Convert the case of all characters in the string
+    convert_case(str);
+    
+    // Output the modified string
+    printf("Modified string: %s\n", str);
+    
+    return 0;
+}
